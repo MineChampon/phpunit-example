@@ -19,7 +19,7 @@ if($command == "1") {
     print "else : ".$command;
 }
 
-//aaa
+//aa
 
 
 
