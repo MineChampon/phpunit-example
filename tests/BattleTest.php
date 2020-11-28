@@ -7,18 +7,21 @@ require_once('src/Enemy.php');
 
 class BattleTest extends TestCase
 {
-    public function testBattle()
-    {
+    public function testBattleEnemyCount()
+    {   
         $battle = new Battle();
-        $this->assertInstanceOf("Battle", $battle);
+        $this->assertGreaterThanOrEqual(1, $battle->enemyCount);
+        $this->assertLessThanOrEqual(4, $battle->enemyCount);
+        foreach($battle->enemies as $enemy){
+            $this->assertInstanceOf("Enemy", $enemy);
+        }
     }
 
     public function testBattleStartWin()
     {
         $battle = new Battle();
         $hero = new Hero("masayoshi", 13, 5);
-        $enemy = new Enemy("tanaka", 10, 5);
-        $result = $battle->battleStart($hero, $enemy);
+        $result = $battle->battleStart($hero);
         $this->assertEquals("win", $result);
     }
 
@@ -26,8 +29,7 @@ class BattleTest extends TestCase
     {
         $battle = new Battle();
         $hero = new Hero("masayoshi", 13, 5);
-        $enemy = new Enemy("tanaka", 100, 5);
-        $result = $battle->battleStart($hero, $enemy);
+        $result = $battle->battleStart($hero);
         $this->assertEquals("lose", $result);
     }
 }
