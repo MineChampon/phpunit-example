@@ -13,12 +13,21 @@ class BattleTest extends TestCase
         $this->assertInstanceOf("Battle", $battle);
     }
 
-    public function testBattleStart()
+    public function testBattleStartWin()
     {
         $battle = new Battle();
-        $hero = new Hero("masayoshi", 5);
-        $enemy = new Enemy("tanaka", 10);
+        $hero = new Hero("masayoshi", 13, 5);
+        $enemy = new Enemy("tanaka", 10, 5);
         $result = $battle->battleStart($hero, $enemy);
         $this->assertEquals("win", $result);
+    }
+
+    public function testBattleStartLose()
+    {
+        $battle = new Battle();
+        $hero = new Hero("masayoshi", 13, 5);
+        $enemy = new Enemy("tanaka", 100, 5);
+        $result = $battle->battleStart($hero, $enemy);
+        $this->assertEquals("lose", $result);
     }
 }
