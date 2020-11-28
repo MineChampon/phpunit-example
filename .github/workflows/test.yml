@@ -20,6 +20,9 @@ jobs:
 
     - name: Checkout
       uses: actions/checkout@v2
+    
+    - name: Test composer self-update
+      run: composer self-update
 
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
